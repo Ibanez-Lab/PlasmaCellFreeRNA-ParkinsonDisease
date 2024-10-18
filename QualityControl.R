@@ -51,7 +51,6 @@ dds<-DESeqDataSetFromMatrix(countData = countMatrix, colData = sumMergeDf, desig
 
 ## Normalize and log transform the counts -----
 rld <- rlog(dds, blind=TRUE)
-save(rld, file = "rlog.cfRNA.counts.RData")
  
 ## Perform PCA -----
 PCA<-plotPCA(rld, intgroup = "group", returnData = T)
@@ -128,3 +127,8 @@ corP<-ggplot(df_long, aes(x = Var1, y = Var2, fill = r)) +
 ## Remove outliers -----
 outliers<- PCA$name[abs(PCA$PC1)>(mean(PCA$PC1)+3*sd(PCA$PC1)) | abs(PCA$PC2)>(mean(PCA$PC2)+3*sd(PCA$PC2))]
 countMatrix <- countMatrix[,colnames(countMatrix) %!in% outliers]
+sumMergeDf<-sumMergeDf[rownames(sumMergeDf)%in%colnames(countMatrix),]
+
+dds<-DESeqDataSetFromMatrix(countData = countMatrix, colData = sumMergeDf, design = ~ 1)
+rld <- rlog(dds, blind=TRUE)
+save(rld, file = "rlog.cfRNA.counts.RData")
