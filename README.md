@@ -6,7 +6,6 @@ Data repository: NIAGADS dss NG00142
 Code used for data processing and analyses is provided in the following files:
 
 1-  Data Processing and Quality Control (QualityControl.R, freezer.time.associated.genes.R, medication.associated.genes.R)
-
 2-  Differential Expression Analyses (DifferentialExpressionAnalyses.R, meta.analysis.R)
 
 3-  Biological contextualization (multiomic.data.integration.pathway.analyses.R)
